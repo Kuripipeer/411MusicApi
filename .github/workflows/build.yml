@@ -1,0 +1,12 @@
+name: Docker Build & Publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar mi repositorio
