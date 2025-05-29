@@ -10,3 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clonar mi repositorio
+        uses: actions/checkout@v4
+
+      - name: Login a Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p "${{ secrets.DOCKER_PASSWORD }}"
+
+      - name: Crear la imagen
+        run: docker build -t kuripipeer/music-api-411:latest .
+
+      - name: Publicar imagen
+        run: docker push kuripipeer/music-api-411:latest
