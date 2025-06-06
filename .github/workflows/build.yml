@@ -33,4 +33,4 @@ jobs:
           -e DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }} \
           -e DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }} \
           -e DATABASE_NAME=${{ secrets.DATABASE_NAME }} \
-          kuripipeer/music-api-411:latest
+          kuripipeer/music-api-411:latest migrate --yes
