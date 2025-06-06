@@ -20,3 +20,17 @@ jobs:
 
       - name: Publicar imagen
         run: docker push kuripipeer/music-api-411:latest
+
+  migrate-db:
+    runs-on: ubuntu-latest
+    needs: build-and-publish
+    steps:
+      - name: Ejecuta las migraciones SI ES QUE HAY
+        run: |
+          docker container run --rm \
+          -e DATABASE_HOST=${{ secrets.DATABASE_HOST }} \
+          -e DATABASE_PORT=${{ secrets.DATABASE_PORT }} \
+          -e DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }} \
+          -e DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }} \
+          -e DATABASE_NAME=${{ secrets.DATABASE_NAME }} \
+          kuripipeer/music-api-411:latest
